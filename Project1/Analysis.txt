@@ -1,0 +1,5 @@
+Task0 O(2)
+Task1 O(2n)
+Task2 O(n)
+Task3 O(n)
+Task4 O(n)
