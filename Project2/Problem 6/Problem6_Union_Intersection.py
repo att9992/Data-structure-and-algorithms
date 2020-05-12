@@ -55,11 +55,14 @@ def union(llist_1, llist_2):
 def intersection(llist_1, llist_2):
     list1=llist_1.to_list()
     list2=llist_2.to_list()
-    output = [i for i in list1 if i not in list2]
+    output = [i for i in list1 if i in list2]
     link_list = LinkedList()
     for i in output:
         link_list.append(i)
     return link_list
+
+
+# Test case 1
 
 linked_list_1 = LinkedList()
 linked_list_2 = LinkedList()
@@ -74,3 +77,39 @@ for i in element_2:
     linked_list_2.append(i)
 
 print (union(linked_list_1,linked_list_2))
+print (intersection(linked_list_1,linked_list_2))
+
+# Test case 2
+
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_1 = [3,2,4,35,6,65,6,4,3,23]
+element_2 = [1,7,8,9,11,21,1]
+
+for i in element_1:
+    linked_list_3.append(i)
+
+for i in element_2:
+    linked_list_4.append(i)
+
+print (union(linked_list_3,linked_list_4))
+print (intersection(linked_list_3,linked_list_4))
+
+
+# Test case 3
+
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+element_1 = [3,2,4,8,6,65,6,9,3,23]
+element_2 = [1,7,8,9,11,21,1]
+
+for i in element_1:
+    linked_list_5.append(i)
+
+for i in element_2:
+    linked_list_6.append(i)
+
+print (union(linked_list_5,linked_list_6))
+print (intersection(linked_list_5,linked_list_6))

@@ -33,9 +33,10 @@ class BlockChain:
     def search(self,value):
         position_pointer = self.tail
         while position_pointer.previous_hash is not None:
-            if position_pointer.hash == value:
+            if position_pointer.data == value:
                 return position_pointer
             position_pointer=position_pointer.previous_hash
+        return None
 
     def size(self):
         position_pointer = self.tail
@@ -51,3 +52,13 @@ blockchain.add_block('my balance: 10 | cash flow: -15')
 blockchain.add_block('my balance: 20 | cash flow: +15')
 blockchain.add_block('my balance: 30 | cash flow: +5')
 print(blockchain.size())
+
+print(blockchain.search('my balance: 20 | cash flow: +25'))
+
+blockchain1 = BlockChain()
+blockchain1.add_block('my balance: 10 | cash flow: +25 | final balance: 35')
+blockchain1.add_block('my balance: 35 | cash flow: -15 | final balance: 20')
+blockchain1.add_block('my balance: 20 | cash flow: +125 | final balance: 145')
+blockchain1.add_block('my balance: 145 | cash flow: +5 | final balance: 150')
+
+print(blockchain1.search('my balance: 20 | cash flow: +125 | final balance: 145'))

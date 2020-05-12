@@ -19,14 +19,40 @@ class Group(object):
     def get_name(self):
         return self.name
 
-    def is_user_in_group(user, group):
-        if user in group.get_users():
-            return True
-        else:
-            if len(group.get_groups()) == 0:
-                return False
-            for gr in group.get_groups():
-                boo = is_user_in_group(user,gr)
-                if boo:
-                    return True
-        return False
+def is_user_in_group(user, group):
+    if user in group.get_users():
+        return True
+    else:
+        if len(group.get_groups()) == 0:
+            return False
+        for gr in group.get_groups():
+            boo = is_user_in_group(user,gr)
+            if boo:
+                 return True
+    return False
+
+parent = Group("parent")
+child = Group("child")
+sub_child = Group("subchild")
+
+sub_child_user = "sub_child_user"
+sub_child.add_user(sub_child_user)
+
+child.add_group(sub_child)
+parent.add_group(child)
+
+# Normal Cases:
+print('Normal Cases:')
+print(is_user_in_group(user='parent_user', group=parent))
+# False
+print(is_user_in_group(user='child_user', group=parent))
+# False
+print(is_user_in_group(user='sub_child_user', group=parent), '\n')
+# True
+
+# Edge Cases:
+print('Edge Cases:')
+print(is_user_in_group(user='', group=parent))
+# False
+print(is_user_in_group(user='', group=child))
+# False

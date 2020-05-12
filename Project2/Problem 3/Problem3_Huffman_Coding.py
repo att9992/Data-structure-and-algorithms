@@ -108,3 +108,35 @@ if __name__ == "__main__":
 
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+
+    test_sentence1 = "hello the world"
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(test_sentence1)))
+    print ("The content of the data is: {}\n".format(test_sentence1))
+
+    encoded_data, tree = huffman_coding.encode(test_sentence1)
+
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_coding.decode(encoded_data, tree)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+
+    test_sentence2 = "good morning"
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(test_sentence2)))
+    print ("The content of the data is: {}\n".format(test_sentence2))
+
+    encoded_data, tree = huffman_coding.encode(test_sentence2)
+
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_coding.decode(encoded_data, tree)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print ("The content of the encoded data is: {}\n".format(decoded_data))

@@ -5,12 +5,34 @@ def find_files(suffix,path):
         return []
     if len(os.listdir(path)) == 0:
         return []
-    list_file = os.listdir(path)
-    path_files = [file for file in list_file if '.' + suffix in file]
-    path_folders = [folder for folder in list_file if '.' not in folder] 
+    path_list = os.listdir(path)
+    output = []
+    for item in path_list:
+        item_path = os.path.join(path,item)
+        if os.path.isdir(item_path):
+            output +=find_files(suffix,item_path)
+        if os.path.isfile(item_path) and item_path.endswith(suffix):
+            output.append(item_path)
+        return output
 
-    for folder in path_folders:
-        path_files.extend(find_files(suffix = suffix, path = path + '/' +folder))
-    return path_files
+
+print("Test 1")
+print(find_files('.c', './Problem 2/testdir'))
+
+# Prints every file
+print("Test 2")
+print(find_files('', './Problem 2/testdir'))
+
+# Non existent extension
+print("Test 3")
+print(find_files('.z', './Problem 2/testdir'))
+
+# Non existent directory
+print("Test 4")
+print(find_files('.c', './asdf'))
+
+# Empty Directory
+print("Test 5")
+print(find_files('.c', './Problem 2/emptydir'))
 
 
