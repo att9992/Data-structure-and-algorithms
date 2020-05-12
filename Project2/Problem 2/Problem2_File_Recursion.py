@@ -13,7 +13,7 @@ def find_files(suffix,path):
             output +=find_files(suffix,item_path)
         if os.path.isfile(item_path) and item_path.endswith(suffix):
             output.append(item_path)
-        return output
+    return output
 
 
 print("Test 1")

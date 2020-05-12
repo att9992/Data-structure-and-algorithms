@@ -6,6 +6,8 @@ class Block:
     def __init__(self, timestamp, data, previous_hash):
         self.timestamp = timestamp
         self.data = data
+        self.next = None
+        self.prev = None
         self.previous_hash = previous_hash
         self.hash = self.calc_hash(data)
 
@@ -28,21 +30,24 @@ class BlockChain:
         if self.tail == None:
             self.tail = Block(timestamp=timestamp,data=data,previous_hash=None)
         else:
-            self.tail = Block(timestamp=timestamp,data=data,previous_hash=self.tail)
-
+            prev_node = self.tail
+            self.tail.next = Block(timestamp=timestamp,data=data,previous_hash=self.tail.hash)
+            self.tail= self.tail.next
+            self.tail.prev = prev_node
+    
     def search(self,value):
         position_pointer = self.tail
-        while position_pointer.previous_hash is not None:
+        while position_pointer.prev is not None:
             if position_pointer.data == value:
                 return position_pointer
-            position_pointer=position_pointer.previous_hash
+            position_pointer=position_pointer.prev
         return None
 
     def size(self):
         position_pointer = self.tail
         length = 0
         while position_pointer is not None:
-            position_pointer = position_pointer.previous_hash
+            position_pointer = position_pointer.prev
             length += 1
         return length
 

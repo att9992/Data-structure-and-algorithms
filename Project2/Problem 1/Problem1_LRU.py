@@ -20,7 +20,6 @@ class LRU_Cache(object):
             self.head = node
             self.end = node
         else:
-            node.prev = None
             node.next = self.head
             self.head.prev=node
             self.head = node
@@ -30,7 +29,7 @@ class LRU_Cache(object):
         if not self.head:
             return
         
-        if self.head == node and self.end == node:
+        if not node.next and not node.prev :
             self.head = None
             self.end = None
 
@@ -50,7 +49,7 @@ class LRU_Cache(object):
         if key not in self.hash:
             return -1
         node = self.hash[key]
-        if self.head == None:
+        if self.head == node:
             return node.value
         self.remove(node)
         self.set_head(node)
@@ -94,11 +93,22 @@ our_cache.put(6, 6)
 our_cache.get(3) 
 our_cache.print_elements()
 
-our_cache = LRU_Cache(2)
+#Edge cases
+
+our_cache = LRU_Cache(1)
 our_cache.put(1, 1)
 our_cache.put(2, 2)
 our_cache.put(1, 10)
 print(our_cache.get(1))
 print(our_cache.get(2))
 
-
+our_cache=LRU_Cache(3)
+our_cache.put(1,1)
+our_cache.put(2,2)
+our_cache.put(3,3)
+our_cache.put(4,4)
+our_cache.print_elements()
+print(our_cache.get(4))   # Expected Value = 4
+print(our_cache.get(1))   # Expected Value = -1
+our_cache.put(2,4)
+our_cache.print_elements()

@@ -30,7 +30,7 @@ class Huffman_coding:
         return heap
 
     def merge_nodes(self,heap):
-        if heap == 1:
+        if len(heap) == 1:
             node = heapq.heappop(heap)
             new_node = Huffman_node(None,node.freq)
             new_node.left = node
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     print ("The content of the encoded data is: {}\n".format(decoded_data))
 
 
-    test_sentence1 = "hello the world"
+    test_sentence1 = "aaaaaaa"
 
     print ("The size of the data is: {}\n".format(sys.getsizeof(test_sentence1)))
     print ("The content of the data is: {}\n".format(test_sentence1))
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     print ("The content of the encoded data is: {}\n".format(decoded_data))
 
 
-    test_sentence2 = "good morning"
+    test_sentence2 = "bbbbbbbbbbbbb"
 
     print ("The size of the data is: {}\n".format(sys.getsizeof(test_sentence2)))
     print ("The content of the data is: {}\n".format(test_sentence2))
